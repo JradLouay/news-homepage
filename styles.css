@@ -1,0 +1,253 @@
+:root {
+  --Almost-White: #fffdfa;
+  --Dark-Space-Blue: #00001a;
+  --gunmetal: #5e607a;
+  --light-vermillion: #f15d51;
+  --Silver: #c5c6ce;
+  --Yellow: #e9aa52;
+  background-color: var(--Almost-White);
+  font-family: "Inter";
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/static/Inter-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/static/Inter-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/static/Inter-ExtraBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+.body {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+}
+.heading-xl {
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 56px;
+}
+
+.heading-xs {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 24px;
+}
+
+.heading-m {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.heading-s {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 24px;
+}
+
+.heading-l {
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  max-width: 1110px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 89px 0px 55px 0px;
+}
+
+header nav {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+header nav a {
+  color: var(--gunmetal);
+  text-decoration: none;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 30px;
+  row-gap: 71px;
+  padding-bottom: 130px;
+  counter-reset: section;
+}
+
+.main-article {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 298px 1fr;
+  gap: 30px;
+}
+
+.main-article img {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.main-article h2 {
+  color: var(--Dark-Space-Blue);
+}
+.main-article .desc {
+  display: flex;
+  flex-direction: column;
+  gap: 29px;
+}
+.main-article .desc button {
+  width: 185px;
+  height: 48px;
+  background-color: var(--light-vermillion);
+  color: var(--Almost-White);
+  border: 0;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 171.429% */
+  letter-spacing: 4.375px;
+}
+
+.new-section {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  padding: 32px 28px 31px 32px;
+  background: var(--Dark-Space-Blue);
+}
+
+.new-section h2 {
+  color: var(--Yellow);
+  /* margin-bottom: 32px; */
+}
+
+ul {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+.headline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+  margin-top: 32px;
+}
+
+ul > *:not(:last-child):after {
+  content: "";
+  height: 1px;
+  background-color: #5e607a;
+  margin-top: 29px;
+  width: 100%;
+}
+
+.headline h3 {
+  color: var(--Almost-White, #fffdfa);
+}
+.headline p {
+  color: var(--Silver, #c5c6ce);
+}
+
+.small-article {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  counter-increment: headerCounter;
+}
+
+.small-article img {
+  height: 130px;
+}
+
+.small-article .article-description::before {
+  counter-increment: section;
+  content: counter(section, decimal-leading-zero);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+  color: var(--Silver);
+  margin-bottom: 12px;
+}
+
+.article-description p {
+  color: var(--Silver);
+}
+
+.article-description h6 {
+  color: var(--Dark-Space-Blue);
+  margin-bottom: 9px;
+}
