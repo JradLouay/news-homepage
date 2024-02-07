@@ -2,7 +2,7 @@
   --Almost-White: #fffdfa;
   --Dark-Space-Blue: #00001a;
   --gunmetal: #5e607a;
-  --light-vermillion: #f15d51;
+  --Light-Vermillion: #f15d51;
   --Silver: #c5c6ce;
   --Yellow: #e9aa52;
   background-color: var(--Almost-White);
@@ -12,6 +12,35 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  max-width: 1110px;
+  margin: 0 auto;
 }
 
 @font-face {
@@ -79,35 +108,6 @@
   line-height: 40px;
 }
 
-html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-*,
-*:before,
-*:after {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
-  box-sizing: inherit;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin: 0;
-}
-
-body {
-  min-height: 100vh;
-  max-width: 1110px;
-  margin: 0 auto;
-}
-
 header {
   display: flex;
   justify-content: space-between;
@@ -116,10 +116,7 @@ header {
 }
 
 header nav {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 40px;
+  display: none;
 }
 
 header nav a {
@@ -127,45 +124,114 @@ header nav a {
   text-decoration: none;
 }
 
+header nav a:hover {
+  color: var(--Light-Vermillion);
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 26, 0.5);
+}
+
+#mobile-menu {
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  position: fixed;
+  transition: 0.5s;
+  right: 0;
+  top: 0;
+  height: 100%;
+  transition: 0.3s;
+  width: 0;
+  background-color: var(--Almost-White);
+}
+
+#mobile-menu .close-button-container {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-right: 21px;
+  padding-top: 27px;
+}
+
+#mobile-menu button {
+  cursor: pointer;
+  border: 0;
+  background: inherit;
+}
+
+#mobile-menu nav {
+  padding: 86px 29px 0px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+#mobile-menu nav a {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--gunmetal);
+  text-decoration: none;
+}
+
+#mobile-menu nav a:hover {
+  color: var(--Light-Vermillion);
+}
+
+header button {
+  background: inherit;
+  border: 0;
+  cursor: pointer;
+  display: block;
+}
+
 main {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 30px;
-  row-gap: 71px;
+  row-gap: 64px;
   padding-bottom: 130px;
   counter-reset: section;
 }
 
 .main-article {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 3;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 298px 1fr;
-  gap: 30px;
+  gap: 24px;
+}
+
+.main-article .desktop-image {
+  display: none;
+}
+
+.main-article .mobile-image {
+  display: block;
 }
 
 .main-article img {
-  grid-column-start: 1;
-  grid-column-end: 3;
   object-fit: cover;
   height: 100%;
   width: 100%;
 }
+
 .main-article h2 {
   color: var(--Dark-Space-Blue);
+  margin-bottom: -8px;
 }
+
 .main-article .desc {
   display: flex;
   flex-direction: column;
-  gap: 29px;
+  gap: 24px;
 }
+
 .main-article .desc button {
   width: 185px;
   height: 48px;
-  background-color: var(--light-vermillion);
+  background-color: var(--Light-Vermillion);
   color: var(--Almost-White);
   border: 0;
   font-family: Inter;
@@ -174,11 +240,65 @@ main {
   font-weight: 700;
   line-height: 24px; /* 171.429% */
   letter-spacing: 4.375px;
+  cursor: pointer;
+}
+.main-article .desc button:hover {
+  background-color: var(--Dark-Space-Blue);
+  color: var(--Almost-White);
+}
+
+@media (min-width: 768px) {
+  header nav {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  header button {
+    display: none;
+  }
+
+  main {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
+    row-gap: 71px;
+  }
+
+  .desktop-image {
+    display: block;
+  }
+  .mobile-image {
+    display: none;
+  }
+
+  .main-article {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 298px 1fr;
+  }
+
+  .main-article img {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  .new-section {
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+  .main-article .desc {
+    gap: 29px;
+  }
+  .main-article h2 {
+    color: var(--Dark-Space-Blue);
+    margin-bottom: 0;
+  }
 }
 
 .new-section {
-  grid-row-start: 1;
-  grid-row-end: 3;
   padding: 32px 28px 31px 32px;
   background: var(--Dark-Space-Blue);
 }
@@ -192,18 +312,7 @@ ul {
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 0;
-}
-
-.headline {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 8px;
-  text-align: left;
-  margin-top: 32px;
 }
 
 ul > *:not(:last-child):after {
@@ -214,11 +323,27 @@ ul > *:not(:last-child):after {
   width: 100%;
 }
 
-.headline h3 {
-  color: var(--Almost-White, #fffdfa);
+.headline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  margin-top: 32px;
 }
+
+.headline h3 {
+  color: var(--Almost-White);
+  margin-bottom: 8px;
+}
+
+.headline h3:hover {
+  color: var(--Light-Vermillion);
+  cursor: pointer;
+}
+
 .headline p {
-  color: var(--Silver, #c5c6ce);
+  color: var(--Silver);
 }
 
 .small-article {
@@ -235,6 +360,7 @@ ul > *:not(:last-child):after {
 .small-article .article-description::before {
   counter-increment: section;
   content: counter(section, decimal-leading-zero);
+  display: block;
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
@@ -250,4 +376,14 @@ ul > *:not(:last-child):after {
 .article-description h6 {
   color: var(--Dark-Space-Blue);
   margin-bottom: 9px;
+}
+
+.article-description h6:hover {
+  color: var(--Light-Vermillion);
+}
+
+@media (max-width: 1142px) {
+  body {
+    margin-inline: 16px;
+  }
 }
